@@ -11,3 +11,30 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#main-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 250px auto;
+  width: 800px;
+  justify-content: 'space-between';
+  -webkit-animation:spin 6s linear infinite;
+  -moz-animation:spin 6s linear infinite;
+  animation:spin 6s linear infinite;
+  -webkit-box-shadow: 16px -29px 55px -8px rgba(66, 68, 90, 1);
+  -moz-box-shadow: 16px -29px 55px -8px rgba(66, 68, 90, 1);
+  box-shadow: 16px -29px 55px -8px rgba(66, 68, 90, 1);
+}
+
+@-moz-keyframes spin { 
+  100% { -moz-transform: rotate(360deg); } 
+}
+@-webkit-keyframes spin { 
+  100% { -webkit-transform: rotate(360deg); } 
+}
+@keyframes spin { 
+  100% { 
+      -webkit-transform: rotate(360deg); 
+      transform:rotate(360deg); 
+  } 
+}
