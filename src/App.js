@@ -6,20 +6,8 @@ function App() {
   const [color3, setColor3] = useState("blue");
   const [color4, setColor4] = useState("yellow");
 
-  const handleClick1 = () => {
-    setColor1(getRandomColor());
-  };
-
-  const handleClick2 = () => {
-    setColor2(getRandomColor());
-  };
-
-  const handleClick3 = () => {
-    setColor3(getRandomColor());
-  };
-
-  const handleClick4 = () => {
-    setColor4(getRandomColor());
+  const handleClick = (setColor) => {
+    setColor(getRandomColor());
   };
 
   const getRandomColor = () => {
@@ -34,7 +22,7 @@ function App() {
   return (
     <div>
       <div
-        onClick={handleClick1}
+        onClick={() => handleClick(setColor1)}
         style={{
           width: "100px",
           height: "100px",
@@ -43,7 +31,7 @@ function App() {
         }}
       ></div>
       <div
-        onClick={handleClick2}
+        onClick={() => handleClick(setColor2)}
         style={{
           width: "100px",
           height: "100px",
@@ -52,7 +40,7 @@ function App() {
         }}
       ></div>
       <div
-        onClick={handleClick3}
+        onClick={() => handleClick(setColor3)}
         style={{
           width: "100px",
           height: "100px",
@@ -61,7 +49,7 @@ function App() {
         }}
       ></div>
       <div
-        onClick={handleClick4}
+        onClick={() => handleClick(setColor4)}
         style={{
           width: "100px",
           height: "100px",
