@@ -1,21 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 function App() {
   const [colors, setColors] = useState([]);
-
-  useEffect(() => {
-    const colorsArr = [];
-    for (let i = 0; i < 4; i++) {
-      colorsArr.push(getRandomColor());
-    };
-    setColors(colorsArr);
-  }, []);
-
-  const handleClick = (num) => {
-    const colorsArr = colors;
-    colorsArr[num] = getRandomColor();
-    setColors([...colorsArr]);
-  };
+  const [numberOfSquares, setNumberOfSquares] = useState(0);
 
   const getRandomColor = () => {
     let color = "#";
@@ -25,43 +12,47 @@ function App() {
     return color;
   };
 
-  const tileStyle = {
-    width: "400px",
-    height: "400px",
-    display: "inline-block",
+  const addSquare = () => {
+    const newColors = [...colors, getRandomColor()];
+    setColors(newColors);
+    setNumberOfSquares(newColors.length);
+  };
+
+  const removeSquare = () => {
+    const newColors = [...colors];
+    newColors.pop();
+    setColors(newColors);
+    setNumberOfSquares(newColors.length);
+  };
+
+  const squareStyle = {
+    width: "100px",
+    height: "100px",
+    margin: "10px",
     cursor: "pointer",
-  }
+  };
+
+  const squares = colors
+    .slice(0, numberOfSquares)
+    .map((color, index) => (
+      <div
+        key={index}
+        style={{ ...squareStyle, backgroundColor: color }}
+        onClick={() =>
+          setColors([
+            ...colors.slice(0, index),
+            getRandomColor(),
+            ...colors.slice(index + 1),
+          ])
+        }
+      ></div>
+    ));
 
   return (
     <div id="main-container">
-      <div
-        onClick={() => handleClick(0)}
-        style={{
-          ...tileStyle,
-          backgroundColor: colors[0],
-        }}
-      ></div>
-      <div
-        onClick={() => handleClick(1)}
-        style={{
-          ...tileStyle,
-          backgroundColor: colors[1],
-        }}
-      ></div>
-      <div
-        onClick={() => handleClick(2)}
-        style={{
-          ...tileStyle,
-          backgroundColor: colors[2],
-        }}
-      ></div>
-      <div
-        onClick={() => handleClick(3)}
-        style={{
-          ...tileStyle,
-          backgroundColor: colors[3],
-        }}
-      ></div>
+      <button onClick={addSquare}>Dodaj kwadrat</button>
+      <button onClick={removeSquare}>Usuń kwadrat</button>
+      {squares}
     </div>
   );
 }
